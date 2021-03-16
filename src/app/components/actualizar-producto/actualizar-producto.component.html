@@ -1,0 +1,83 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-icon slot="icon-only" name="arrow-back" (click)="cerrarModal()"></ion-icon>
+        </ion-buttons>
+        <ion-title class="ion-text-center">
+            Actualizar producto
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-icon slot="icon-only" color="danger" name="trash" (click)="eliminar()"></ion-icon>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-row class="top-20">
+
+    </ion-row>
+
+    <ion-slides pager=true *ngIf="producto.imgs.length > 1">
+        <ion-slide *ngFor="let img of producto.imgs" class="image-slide" [style]=" (img |imagen: producto.usuario )|domSanatizer">
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides *ngIf="producto.imgs.length == 1" [options]="slideOne">
+        <ion-slide class="image-slide" [style]=" (producto.imgs[0] |imagen: producto.usuario )|domSanatizer">
+        </ion-slide>
+    </ion-slides>
+
+    <form (ngSubmit)="actualizar()">
+        <ion-row>
+            <ion-col>
+
+                <ion-list>
+
+                    <ion-item>
+                        <ion-label position="floating">Nombre</ion-label>
+                        <ion-input name="mensaje" [(ngModel)]="producto.nombre"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating">Precio</ion-label>
+                        <ion-input name="precio" [(ngModel)]="producto.precio"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label position="floating">Cantidad</ion-label>
+                        <ion-input name="cantidad" [(ngModel)]="producto.cantidad"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label>Categoria</ion-label>
+                        <ion-select name="categoria" [(ngModel)]="producto.categoria">
+                            <ion-select-option value="Tecnologia">Tecnologia</ion-select-option>
+                            <ion-select-option value="Electrodomesticos">Electrodomesticos</ion-select-option>
+                            <ion-select-option value="Video juegos">Video juegos</ion-select-option>
+                            <ion-select-option value="Ropa">Ropa</ion-select-option>
+                            <ion-select-option value="Hogar">Hogar</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Estado</ion-label>
+                            <ion-toggle slot="end" name="estado" [(ngModel)]="producto.estado"></ion-toggle>
+                        </ion-item>
+                    </ion-list>
+
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="ion-text-center">
+                <ion-button type="submit" color="tertiary" shape="round">
+                    Actualizar
+                </ion-button>
+            </ion-col>
+        </ion-row>
+
+    </form>
+</ion-content>

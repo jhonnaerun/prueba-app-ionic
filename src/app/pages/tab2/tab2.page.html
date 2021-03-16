@@ -1,0 +1,81 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>
+            Nuevo Producto
+        </ion-title>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="crearProducto()" color="primary" [disabled]="productoNuevo.nombre.length === 0 || isLocalizando">
+                Cargar
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input name="mensaje" [(ngModel)]="productoNuevo.nombre"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input name="precio" [(ngModel)]="productoNuevo.precio"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Cantidad</ion-label>
+            <ion-input name="cantidad" [(ngModel)]="productoNuevo.cantidad"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Categoria</ion-label>
+            <ion-select name="categoria" [(ngModel)]="productoNuevo.categoria">
+                <ion-select-option value="Tecnologia">Tecnologia</ion-select-option>
+                <ion-select-option value="Electrodomesticos">Electrodomesticos</ion-select-option>
+                <ion-select-option value="Video juegos">Video juegos</ion-select-option>
+                <ion-select-option value="Ropa">Ropa</ion-select-option>
+                <ion-select-option value="Hogar">Hogar</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-list>
+            <ion-item>
+                <ion-label>Estado</ion-label>
+                <ion-spinner *ngIf="isLocalizando" name="lines-small"></ion-spinner>
+                <ion-toggle slot="end" name="estado" [(ngModel)]="productoNuevo.estado"></ion-toggle>
+            </ion-item>
+        </ion-list>
+
+
+    </ion-list>
+
+    <ion-row>
+        <ion-col size="6">
+            <ion-button expand="full" shape="round" (click)="cargarCamara()">
+                <ion-icon slot="start" name="camera"></ion-icon>
+                Cámara
+            </ion-button>
+        </ion-col>
+        <ion-col size="6">
+            <ion-button expand="full" shape="round" (click)="cargarGaleria()">
+                <ion-icon slot="start" name="images"></ion-icon>
+                Galería
+            </ion-button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col size="3" *ngFor="let image of tempImages">
+            <ion-card>
+                <img [src]="image">
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+
+</ion-content>

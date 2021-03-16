@@ -1,0 +1,29 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-icon slot="icon-only" name="storefront"></ion-icon>
+        </ion-buttons>
+        <ion-title class="ion-text-center">
+            Market place
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()" color="danger">
+                <ion-icon slot="icon-only" name="exit"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+
+    <ion-refresher slot="fixed" (ionRefresh)="refreshProductos($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <app-productos [productos]=producto></app-productos>
+
+    <ion-infinite-scroll [disabled]="infinitDisable" threshold="150px" (ionInfinite)=" getProductos($event)">
+        <ion-infinite-scroll-content loading-spinner="circular" loading-text="Cargando...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
