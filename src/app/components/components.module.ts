@@ -8,6 +8,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { ProductoComponent } from './producto/producto.component';
 import { ActualizarProductoComponent } from './actualizar-producto/actualizar-producto.component';
 import { FormsModule } from '@angular/forms';
+import { ComprarProductoComponent } from './comprar-producto/comprar-producto.component';
 
 
 
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     GeomapComponent,
     ProductosComponent,
     ProductoComponent,
-    ActualizarProductoComponent
+    ActualizarProductoComponent,
+    ComprarProductoComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,9 @@ import { FormsModule } from '@angular/forms';
   exports: [    
     AvatarSelectorComponent,
     GeomapComponent,
-    ProductosComponent
+    ProductosComponent,
+    ProductoComponent,
+    ComprarProductoComponent
   ],
   entryComponents: [ActualizarProductoComponent]
 })

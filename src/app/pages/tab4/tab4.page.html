@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Informe de compras</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor="let venta of ventas">
+        <app-producto [producto]="venta.producto"></app-producto>
+        <ion-item lines="none" class="ion-text-right">
+            <ion-grid>
+                <ion-row>
+                    <ion-label>Comprado por: {{venta.usuario.nombre}}</ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label>Cantidad: {{venta.cantidad}}</ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label>Email: {{venta.usuario.email}}</ion-label>
+                </ion-row>
+                <ion-row>
+                    <ion-label>Dirección: {{venta.usuario.direccion}}</ion-label>
+                </ion-row>
+
+            </ion-grid>
+        </ion-item>
+    </ion-card>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-toolbar>
+        <ion-row>
+            <ion-col size="6">
+                <h4>Impuestos:</h4>
+            </ion-col>
+            <ion-col size="6">
+                <h4>${{impuestos}}</h4>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6">
+                <h4>Total compras:</h4>
+            </ion-col>
+            <ion-col size="6">
+                <h4>${{totalCompras}}</h4>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

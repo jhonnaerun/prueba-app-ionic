@@ -68,7 +68,7 @@ export class ProductoService {
            resolve(false);
          }
        });
-      })
+      });
     }
 
 
@@ -76,12 +76,33 @@ export class ProductoService {
    * petición al servicio crear producto emite para una subscripcion en el tab1 home - y promesa que
    * retorna si el proceso fue exitoso
    */
-      eliminarProducto(producto_id) {
-          const headers = new HttpHeaders({
-            'x-token': this.auth.token
-          });
-            return this.http.post(`${pathServer}/producto/eliminar`, producto_id, {headers});
-        }
+    eliminarProducto(producto_id) {
+         const headers = new HttpHeaders({
+           'x-token': this.auth.token
+         });
+           return this.http.post(`${pathServer}/producto/eliminar`, producto_id, {headers});
+       }
+
+   /**
+   * petición al servicio crear producto emite para una subscripcion en el tab1 home - y promesa que
+   * retorna si el proceso fue exitoso
+   */
+    comprarProducto(producto) {
+        const headers = new HttpHeaders({
+           'x-token': this.auth.token
+         });
+  
+         return  this.http.post(`${pathServer}/producto/comprar`, producto, {headers});
+    }
+
+
+    obtenerVentas() {
+      const headers = new HttpHeaders({
+        'x-token': this.auth.token
+      });
+
+      return this.http.get(`${pathServer}/producto/ventas`, {headers});
+    }
 
 
   /**
