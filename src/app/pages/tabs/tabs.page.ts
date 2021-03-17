@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Usuario } from 'src/app/interfaces/respuesta';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  public usuario: Usuario;
+
+  constructor(private auth: AuthService) {
+    this.usuario = auth.getUsuario();
+    console.log('entre tabs');
+  }
 
 }

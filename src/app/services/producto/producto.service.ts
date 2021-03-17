@@ -22,12 +22,18 @@ export class ProductoService {
    * consume el servicio post por pagina
    * @param refresh 
    */
-  getProducto(refresh?: boolean) {
+  getProducto(refresh?: boolean, categoria?: any) {
     if (refresh) {
       this.pagina = 0;
     }
     this.pagina ++;
-    return this.http.get<RespuestaProducto>(`${pathServer}/producto/?pagina=${this.pagina}`);
+    console.log(categoria);
+    if (categoria && categoria.categoria !== 'General') {
+      console.log('entro');
+      return this.http.get<RespuestaProducto>(`${pathServer}/producto/?pagina=${this.pagina}&categoria=${categoria.categoria}`);
+    } else {
+      return this.http.get<RespuestaProducto>(`${pathServer}/producto/?pagina=${this.pagina}`);
+    }
   }
 
 

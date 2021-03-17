@@ -13,26 +13,26 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding color="dark">
 
-    <ion-list>
+    <ion-list style="background-color: #222428;">
 
-        <ion-item>
+        <ion-item color="dark">
             <ion-label position="floating">Nombre</ion-label>
             <ion-input name="mensaje" [(ngModel)]="productoNuevo.nombre"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item color="dark">
             <ion-label position="floating">Precio</ion-label>
             <ion-input name="precio" [(ngModel)]="productoNuevo.precio"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item color="dark">
             <ion-label position="floating">Cantidad</ion-label>
             <ion-input name="cantidad" [(ngModel)]="productoNuevo.cantidad"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item color="dark">
             <ion-label>Categoria</ion-label>
             <ion-select name="categoria" [(ngModel)]="productoNuevo.categoria">
                 <ion-select-option value="Tecnologia">Tecnologia</ion-select-option>
@@ -43,8 +43,8 @@
             </ion-select>
         </ion-item>
 
-        <ion-list>
-            <ion-item>
+        <ion-list style="background-color: #222428;">
+            <ion-item color="dark">
                 <ion-label>Estado</ion-label>
                 <ion-spinner *ngIf="isLocalizando" name="lines-small"></ion-spinner>
                 <ion-toggle slot="end" name="estado" [(ngModel)]="productoNuevo.estado"></ion-toggle>

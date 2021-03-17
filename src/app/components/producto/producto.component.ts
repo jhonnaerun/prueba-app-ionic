@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Producto } from 'src/app/interfaces/respuesta';
+import { Producto, Usuario } from 'src/app/interfaces/respuesta';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { ActualizarProductoComponent } from '../actualizar-producto/actualizar-producto.component';
 import { ComprarProductoComponent } from '../comprar-producto/comprar-producto.component';
 
@@ -11,6 +12,7 @@ import { ComprarProductoComponent } from '../comprar-producto/comprar-producto.c
 })
 export class ProductoComponent implements OnInit {
   public showMap = false;
+  public usuario: Usuario;
 
   slideOne = {
     allowSlideNext: false,
@@ -18,9 +20,12 @@ export class ProductoComponent implements OnInit {
   }
 
   @Input() producto: Producto;
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,
+              private auth: AuthService) { }
 
-  ngOnInit() {}
+  ngOnInit() {    
+    this.usuario = this.auth.getUsuario();
+  }
 
   async actualizarProducto() {
     const modal = await this.modalController.create({

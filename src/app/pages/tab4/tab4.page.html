@@ -4,10 +4,10 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card *ngFor="let venta of ventas">
+<ion-content color="dark">
+    <ion-card *ngFor="let venta of ventas" color="dark">
         <app-producto [producto]="venta.producto"></app-producto>
-        <ion-item lines="none" class="ion-text-right">
+        <ion-item lines="none" class="ion-text-right" color="dark">
             <ion-grid>
                 <ion-row>
                     <ion-label>Comprado por: {{venta.usuario.nombre}}</ion-label>
@@ -27,8 +27,8 @@
     </ion-card>
 </ion-content>
 
-<ion-footer class="ion-no-border">
-    <ion-toolbar>
+<ion-footer class="ion-no-border" color="dark">
+    <ion-toolbar color="dark">
         <ion-row>
             <ion-col size="6">
                 <h4>Impuestos:</h4>

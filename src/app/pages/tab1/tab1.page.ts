@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Producto } from 'src/app/interfaces/respuesta';
+import { Producto, Usuario } from 'src/app/interfaces/respuesta';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ProductoService } from 'src/app/services/producto/producto.service';
 
@@ -11,6 +11,27 @@ import { ProductoService } from 'src/app/services/producto/producto.service';
 export class Tab1Page {
   public producto: Producto[] = [];
   public infinitDisable: boolean;
+
+  private categoriaSeleccionada = 'General';
+  public categorias = [
+    {
+      categoria: 'General'
+     },
+    {
+    categoria: 'Tecnologia'
+   },
+   {
+    categoria: 'Electrodomesticos'
+   },
+   {
+    categoria: 'Video juegos'
+   },
+   {
+    categoria: 'Ropa'
+   },
+   {
+    categoria: 'Hogar'
+   }];
 
   constructor(private productoServices: ProductoService,
               private auth: AuthService) {}
@@ -32,8 +53,13 @@ export class Tab1Page {
    * @param refresh 
    */
    
-  getProductos(event?, refresh?: boolean) {
-    this.productoServices.getProducto(refresh).subscribe(resp => {
+  getProductos(event?, refresh?: boolean, categoria?: string) {
+    if (categoria && categoria !== this.categoriaSeleccionada) {
+      this.categoriaSeleccionada = categoria;      
+      this.productoServices.Inicializar();
+      this.producto = [];
+    } 
+    this.productoServices.getProducto(refresh, categoria).subscribe(resp => {
       this.producto.push(...resp.result);
       console.log(this.producto, resp);
       if (event) {
@@ -47,6 +73,10 @@ export class Tab1Page {
         }
       }
     });
+  }
+
+  filtrarPorCategoria(event) {
+    this.getProductos(undefined, true, event.detail.value);
   }
 
   /**

@@ -12,9 +12,14 @@
             </ion-button>
         </ion-buttons>
     </ion-toolbar>
+    <ion-segment scrollable mode="md" color="primary" [value]="categorias[0]" (ionChange)="filtrarPorCategoria($event)" style="background-color: #222428;">
+        <ion-segment-button mode="md" [value]="categoria" *ngFor="let categoria of categorias">
+            <ion-label text-capitalize>{{categoria.categoria}}</ion-label>
+        </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
-<ion-content color="light">
+<ion-content color="dark">
 
     <ion-refresher slot="fixed" (ionRefresh)="refreshProductos($event)">
         <ion-refresher-content></ion-refresher-content>
