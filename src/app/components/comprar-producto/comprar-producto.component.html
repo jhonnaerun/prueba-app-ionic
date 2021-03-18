@@ -58,7 +58,30 @@
         </ion-button>
     </ion-row>
 
-    <ion-row style="padding-top: 50px;">
+    <ion-item class="margen" *ngIf="producto.modificador && producto.modificador.talla.length != 0" color="dark">
+        <h4>Talla</h4>
+        <hr>
+        <div *ngFor="let talla of producto.modificador.talla; let i = index">
+            <ion-button *ngIf="tallaEstado[i]">{{talla}}</ion-button>
+            <ion-button fill="outline" *ngIf="!tallaEstado[i]" (click)="seleccionarTalla(i, talla)">{{talla}}</ion-button>
+        </div>
+    </ion-item>
+
+    <ion-item class="margen" *ngIf="producto.modificador && producto.modificador.color.length != 0" color="dark">
+        <h4>Color</h4>
+        <hr>
+        <div *ngFor="let color of producto.modificador.color; let i = index">
+            <ion-button *ngIf="colorEstado[i]">{{color}}</ion-button>
+            <ion-button fill="outline" *ngIf="!colorEstado[i]" (click)="seleccionarColor(i, color)">{{color}}</ion-button>
+        </div>
+    </ion-item>
+
+    <ion-item disabled="true" color="dark" style="padding-top: 50px;">
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea name="descripcion" [(ngModel)]="producto.descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-row class="margen">
         <ion-col class="ion-text-center">
             <ion-button class="tam-boton-gr" shape="round" (click)="comprar()">
                 Comprar

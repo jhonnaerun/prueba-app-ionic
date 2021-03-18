@@ -12,10 +12,12 @@ export interface Producto {
   nombre: string;
   precio: number;
   categoria: string;
+  descripcion?: string;
   estado: boolean;
   cantidad: number;
   created?: string;
   usuario?: string;
+  modificador?: any;
   __v?: number;
 }
   

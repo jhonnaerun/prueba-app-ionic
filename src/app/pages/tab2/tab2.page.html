@@ -5,7 +5,7 @@
         </ion-title>
 
         <ion-buttons slot="end">
-            <ion-button (click)="crearProducto()" color="primary" [disabled]="productoNuevo.nombre.length === 0 || isLocalizando">
+            <ion-button (click)="crear()" color="primary" [disabled]="productoNuevo.nombre.length === 0 || productoNuevo.categoria.length === 0 ">
                 Cargar
             </ion-button>
         </ion-buttons>
@@ -25,6 +25,11 @@
         <ion-item color="dark">
             <ion-label position="floating">Precio</ion-label>
             <ion-input name="precio" [(ngModel)]="productoNuevo.precio"></ion-input>
+        </ion-item>
+
+        <ion-item color="dark">
+            <ion-label position="floating">Impuesto</ion-label>
+            <ion-input name="impuesto" [(ngModel)]="productoNuevo.impuesto"></ion-input>
         </ion-item>
 
         <ion-item color="dark">
@@ -51,6 +56,40 @@
             </ion-item>
         </ion-list>
 
+        <ion-list style="background-color: #222428;">
+            <ion-item color="dark">
+                <ion-label>Maneja Talla</ion-label>
+                <ion-spinner *ngIf="isLocalizando" name="lines-small"></ion-spinner>
+                <ion-toggle slot="end" name="talla" [(ngModel)]="habilitar.talla"></ion-toggle>
+            </ion-item>
+
+            <ion-item color="dark" *ngIf="habilitar.talla">
+                <ion-label color="medium" position="floating">Tallas *</ion-label>
+                <ion-select multiple="true" mode="ios" name="talla" [(ngModel)]="modificador.talla">
+                    <ion-select-option *ngFor="let talla of tallas" [value]="talla">{{talla}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-list style="background-color: #222428;">
+            <ion-item color="dark">
+                <ion-label>Maneja Color</ion-label>
+                <ion-spinner *ngIf="isLocalizando" name="lines-small"></ion-spinner>
+                <ion-toggle slot="end" name="color" [(ngModel)]="habilitar.color"></ion-toggle>
+            </ion-item>
+
+            <ion-item color="dark" *ngIf="habilitar.color">
+                <ion-label color="medium" position="floating">Color *</ion-label>
+                <ion-select multiple="true" mode="ios" name="color" [(ngModel)]="modificador.color">
+                    <ion-select-option *ngFor="let color of colores" [value]="color">{{color}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
+
+        <ion-item color="dark">
+            <ion-label position="floating">Descripción</ion-label>
+            <ion-textarea name="descripcion" [(ngModel)]="productoNuevo.descripcion"></ion-textarea>
+        </ion-item>
 
     </ion-list>
 

@@ -19,13 +19,27 @@ export class Tab2Page {
 
   private loading;
 
+  public tallas = ['XS', 'S', 'M', 'L', 'XL'];
+  public colores = ['Negro', 'Gris', 'Rojo', 'Verde', 'Amarillo', 'Blanco'];
+
   public tempImages: string[] = [];
+
+  public modificador = {
+    talla: [],
+    color: []
+  };
+
+  public habilitar= {
+    talla: false,
+    color: false
+  }
 
   public productoNuevo: Producto = {
     impuesto: 0,
     nombre: '',
     precio: 0,
     categoria: '',
+    descripcion: '',
     estado: true,
     cantidad: 0,
   };
@@ -43,15 +57,18 @@ export class Tab2Page {
    */
   crearProducto() {
     this.mostrarLoading();
+    console.log(this.productoNuevo);
     this.producto.crearProducto(this.productoNuevo).then(resp => {
       if (resp) {
         this.productoNuevo = {
           impuesto: 0,
           nombre: '',
           precio: 0,
+          descripcion: '',
           categoria: '',
           estado: true,
-          cantidad: 0
+          cantidad: 0,
+          modificador: undefined
         };
         this.tempImages = [];
         this.cerrarLoading();
@@ -59,6 +76,19 @@ export class Tab2Page {
         this.router.navigateByUrl('/main/tabs/tab1');
       }
     });
+  }
+
+  crear() {
+    if (this.modificador.color.length !== 0 || this.modificador.talla.length!==0) {      
+      this.producto.crearModificador(this.modificador).subscribe((resp: any )=>{
+          console.log(resp);
+          this.productoNuevo.modificador = resp.result._id;
+          this.crearProducto();
+      });
+    } else {
+      this.crearProducto();
+    }
+
   }
 
   /**

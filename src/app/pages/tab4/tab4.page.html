@@ -24,6 +24,22 @@
 
             </ion-grid>
         </ion-item>
+
+        <ion-item class="margen" *ngIf="venta.talla" color="dark">
+            <ion-label>Talla</ion-label>
+            <hr>
+            <div>
+                <ion-button fill="outline">{{venta.talla}}</ion-button>
+            </div>
+        </ion-item>
+
+        <ion-item class="margen" *ngIf="venta.color" color="dark">
+            <ion-label>Color</ion-label>
+            <hr>
+            <div>
+                <ion-button fill="outline">{{venta.color}}</ion-button>
+            </div>
+        </ion-item>
     </ion-card>
 </ion-content>
 

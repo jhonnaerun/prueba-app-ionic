@@ -19,7 +19,7 @@ export class ProductoService {
               private fileTransfer: FileTransfer) { }
 
   /**
-   * consume el servicio post por pagina
+   * consume el servicio producto por pagina
    * @param refresh 
    */
   getProducto(refresh?: boolean, categoria?: any) {
@@ -55,6 +55,14 @@ export class ProductoService {
        }
      });
     })
+  }
+
+  crearModificador(modificador) {
+    const headers = new HttpHeaders({
+      'x-token': this.auth.token
+    });
+
+    return this.http.post(`${pathServer}/configuracion/crear-modificador`, modificador, {headers})
   }
 
 
